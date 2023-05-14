@@ -1,0 +1,13 @@
+.header__information-container {
+    display: none;
+    flex-direction: row;
+    gap: 18px;
+    align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+    .header__information-container {
+        display: flex;
+        gap: 24px;
+    }
+}

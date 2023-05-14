@@ -1,0 +1,35 @@
+.form__submit-btn {
+    width: 238px;
+    height: 46px;
+    background-color: #000000;
+    border-radius: 2px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #ffffff;
+    border: 0;
+    cursor: pointer;
+    transition: width 1s ease, opacity .5s ease;
+}
+
+.form__submit-btn:hover {
+    opacity: .8;
+}
+
+.form__submit-btn:disabled {
+    pointer-events: none;
+    opacity: 0.2;
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+@media screen and (min-width: 581px) {
+    .form__submit-btn {
+        width: 358px;
+        height: 50px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+}

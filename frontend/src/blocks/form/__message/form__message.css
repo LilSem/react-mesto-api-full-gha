@@ -1,0 +1,17 @@
+.form__message {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+    padding: 32px 36px 23px;
+    margin: 0;
+}
+
+@media screen and (min-width: 581px) {
+    .form__message {
+        font-size: 20px;
+        line-height: 24px;
+        padding: 40px 18px 50px;
+    }
+}

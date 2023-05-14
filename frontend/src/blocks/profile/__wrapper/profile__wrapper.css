@@ -1,0 +1,11 @@
+.profile__wrapper {
+    align-items: center;
+    padding-top: 26px;
+}
+
+@media screen and (min-width: 768px){
+    .profile__wrapper {
+        padding: 0 0 0 30px;
+        margin-right: auto;
+    }
+}

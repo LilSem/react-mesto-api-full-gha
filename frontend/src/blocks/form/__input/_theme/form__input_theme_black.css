@@ -1,0 +1,26 @@
+.form__input_theme_black {
+    width: 260px;
+    height: 27px;
+    background-color: #000000;
+    border-bottom: 2px solid #CCCCCC;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.form__input_theme_black:last-of-type {
+    margin-bottom: 0;
+}
+
+.form__input_theme_black:-webkit-autofill,
+.form__input_theme_black:-webkit-autofill:hover,
+.form__input_theme_black:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+@media screen and (min-width: 581px) {
+    .form__input_theme_black {
+        width: 358px;
+        height: 27px;
+    }
+}

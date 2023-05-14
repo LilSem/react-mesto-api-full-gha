@@ -1,0 +1,11 @@
+.cards__place {
+    max-width: 224px;
+    font-weight: 900;
+    font-size: 24px;
+    color: #000000;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 1;
+}

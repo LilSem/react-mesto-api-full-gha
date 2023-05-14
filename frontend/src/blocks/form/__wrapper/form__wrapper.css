@@ -1,0 +1,21 @@
+.form__wrapper {
+    width: 282px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    margin: 0 auto;
+    padding: 25px 0;
+    transition: width .7s ease,
+    padding .5s ease;
+}
+
+@media screen and (min-width: 581px) {
+    .form__wrapper {
+        align-self: center;
+        width: 430px;
+        padding: 34px 0 37px;
+    }
+}

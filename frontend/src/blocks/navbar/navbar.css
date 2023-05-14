@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+    padding: 40px 0;
+    animation: fade_in_show .3s ease-in;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar {
+        display: none;
+    }
+}
+
+@keyframes fade_in_show {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}

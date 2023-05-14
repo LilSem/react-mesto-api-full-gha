@@ -1,0 +1,4 @@
+.form__error-icon_type_error {
+    background: url("../../../../../src/images/form/error.svg") center/cover no-repeat;
+    background-size: 120px;
+}
