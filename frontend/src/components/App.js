@@ -170,8 +170,8 @@ function App() {
 
     function handleSignOut() {
         if (localStorage.getItem('token')) {
-            setLoggedIn(false);
             localStorage.removeItem('token');
+            setLoggedIn(false);
         }
     }
 
