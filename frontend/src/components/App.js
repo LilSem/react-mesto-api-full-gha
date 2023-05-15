@@ -36,17 +36,6 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({});
     const [cards, setCards] = useState([]);
 
-
-    useEffect(() => {
-        loggedIn &&
-        api.getAllData()
-            .then(([cardList, userData]) => {
-                setCards(cardList);
-                setCurrentUser(userData);
-            })
-            .catch(err => console.log(err));
-    }, [loggedIn])
-
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -59,6 +48,16 @@ function App() {
                 .catch(err => console.log(err));
         }
     }, [])
+
+    useEffect(() => {
+        loggedIn &&
+        api.getAllData()
+            .then(([cardList, userData]) => {
+                setCards(cardList);
+                setCurrentUser(userData);
+            })
+            .catch(err => console.log(err));
+    }, [loggedIn])
 
     function handleEditAvatarClick() {
         setIsEditAvatarPopupOpen(true);
