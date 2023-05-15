@@ -10,7 +10,6 @@ const validateCard = (res, card) => {
 
 const getAllCards = (req, res, next) => {
   Card.find({})
-    .populate(['owner', 'likes'])
     .then((cards) => res.send(cards))
     .catch(next);
 };
@@ -50,7 +49,6 @@ const likeCard = (req, res, next) => {
   const { cardId } = req.params;
 
   Card.findByIdAndUpdate(cardId, { $addToSet: { likes: req.user._id } }, { new: true, runValidators: true })
-    .populate(['owner', 'likes'])
     .then((card) => validateCard(res, card))
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -64,7 +62,6 @@ const dislikeCard = (req, res, next) => {
   const { cardId } = req.params;
 
   Card.findByIdAndUpdate(cardId, { $pull: { likes: req.user._id } }, { new: true, runValidators: true })
-    .populate(['owner', 'likes'])
     .then((card) => validateCard(res, card))
     .catch((err) => {
       if (err.name === 'CastError') {
