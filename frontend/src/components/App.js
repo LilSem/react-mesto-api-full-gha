@@ -37,6 +37,7 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({});
     const [cards, setCards] = useState([]);
 
+
     useEffect(() => {
         loggedIn &&
         api.getAllData()
@@ -53,7 +54,7 @@ function App() {
             auth.checkToken(token)
                 .then((data) => {
                     setLoggedIn(true);
-                    setUserEmail(data.data.email);
+                    setUserEmail(data.email);
                     navigate('/', {replace: true});
                 })
                 .catch(err => console.log(err));

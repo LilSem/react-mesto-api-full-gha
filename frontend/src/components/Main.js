@@ -26,7 +26,7 @@ function Main({onEditAvatar, onAddPlace, onEditProfile, onCardClick, onCardLike,
             </section>
             <section className="cards">
                 {
-                    cards.map((card) =>
+                      cards.map((card) =>
                         (
                             <Card
                                 key={card._id}

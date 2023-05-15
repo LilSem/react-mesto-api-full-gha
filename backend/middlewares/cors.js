@@ -4,7 +4,9 @@ const allowedCors = [
   'http://api.lilsem.nomoredomains.monster',
   'https://api.lilsem.nomoredomains.monster',
   'localhost:3000',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'localhost:3001',
+  'http://localhost:3001'
 ];
 
 module.exports = (req, res, next) => {
