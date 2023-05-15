@@ -92,7 +92,7 @@ class Api {
     }
 }
 const api = new Api({
-    url: 'http://localhost:3000',
+    url: 'https://api.lilsem.nomoredomains.monster',
     headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'

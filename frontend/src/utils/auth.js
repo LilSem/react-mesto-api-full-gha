@@ -50,7 +50,7 @@ class Auth {
 
 
 const auth = new Auth({
-    url: 'http://localhost:3000',
+    url: 'https://api.lilsem.nomoredomains.monster',
     headers: {
         'Content-Type': 'application/json',
     }
