@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {ThreeDots} from "react-loader-spinner";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {CurrentUserContext} from "../contexts/CurrentUserContext.js";
 import api from "../utils/api.js";
@@ -196,30 +195,15 @@ function App() {
                         loggedIn={loggedIn}/>
                 <Routes>
                     <Route path="/" element={
-
-                        !loggedIn ? (
-                            <div className="loader">
-                                <ThreeDots
-                                    height="70"
-                                    width="70"
-                                    radius="9"
-                                    color="#ffffff"
-                                    ariaLabel="three-dots-loading"
-                                    visible={true}
-                                />
-                            </div>) :
-
-                            (<ProtectedRoute element={Main}
-                                             loggedIn={loggedIn}
-                                             onEditProfile={handleEditProfileClick}
-                                             onAddPlace={handleAddPlaceClick}
-                                             onEditAvatar={handleEditAvatarClick}
-                                             onCardClick={handleCardClick}
-                                             onCardLike={handleCardLike}
-                                             onCardDelete={handleConfirmationClick}
-                                             cards={cards}/>)
-
-
+                        <ProtectedRoute element={Main}
+                                        loggedIn={loggedIn}
+                                        onEditProfile={handleEditProfileClick}
+                                        onAddPlace={handleAddPlaceClick}
+                                        onEditAvatar={handleEditAvatarClick}
+                                        onCardClick={handleCardClick}
+                                        onCardLike={handleCardLike}
+                                        onCardDelete={handleConfirmationClick}
+                                        cards={cards}/>
                     }/>
                     <Route path="/sign-in"
                            element={<Login isRenderer={isRenderer} onLogin={handleLogin}/>}
