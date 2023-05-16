@@ -26,6 +26,7 @@ app.get('/crash-test', () => {
 });
 
 app.use(require('./routes/login'));
+
 app.use(auth);
 app.use('/users', require('./routes/user'));
 app.use('/cards', require('./routes/card'));

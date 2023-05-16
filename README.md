@@ -6,7 +6,7 @@
 
 ## Ссылки на проект
 
-Публичный IP-адрес 51.250.102.220
+IP 51.250.102.220
 
 Frontend https://lilsem.nomoredomains.monster
 
