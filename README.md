@@ -14,10 +14,11 @@ Backend https://api.lilsem.nomoredomains.monster
 
 ### Список запросов к API
 
-**GET POST** /users
-**GET-запрос возвращает всех пользователей из базы данных; POST-запрос создаёт пользователя с переданными в теле запроса name, about, avatar**  
+**GET POST** /users  
+**GET-запрос возвращает всех пользователей из базы данных.  
+POST-запрос создаёт пользователя с переданными в теле запроса name, about, avatar**  
 
-**GET** /users/:userId
+**GET** /users/:userId  
 **GET-запрос возвращает пользователя по переданному _id** 
 
 **PATCH** /users/me  
@@ -26,16 +27,17 @@ Backend https://api.lilsem.nomoredomains.monster
 **GET** /users/me  
 **GET-запрос возвращает информацию о текущем пользователе**  
 
-**PATCH** /users/me/avatar	 
+**PATCH** /users/me/avatar   
 **PATCH-запрос обновляет аватар пользователя**  
 
-**GET POST** /cards	 
-**GET-запрос возвращает все карточки из базы данных. POST-запрос создает новую карточку по переданным параметрам**  
+**GET POST** /cards  
+**GET-запрос возвращает все карточки из базы данных.   
+POST-запрос создает новую карточку по переданным параметрам**  
 
 **DELETE** /cards/:cardId  
 **DELETE-запрос удаляет карточку по _id**  
 
-**PUT DELETE** /cards/:cardId/likes	 
+**PUT DELETE** /cards/:cardId/likes  
 **PUT-запрос добавляет лайк карточке. DELETE-запрос удаляет лайк с карточки**  
 
 **POST** /signin  
