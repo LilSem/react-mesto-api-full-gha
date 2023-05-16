@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from "react-router-dom";
 import {CurrentUserContext} from "../contexts/CurrentUserContext.js";
-import api from "../utils/api.js";
+import Api from "../utils/api.js";
 import auth from "../utils/auth.js";
 import AddPlacePopup from "./AddPlacePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
@@ -16,6 +16,7 @@ import PageNotFound from "./PageNotFound.js";
 import ProtectedRoute from "./ProtectedRoute.js";
 import Register from "./Register.js";
 import RemoveCardPopup from "./RemoveCardPopup.js";
+import {ThreeDots} from "react-loader-spinner";
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -36,6 +37,14 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({});
     const [cards, setCards] = useState([]);
 
+    const api = new Api({
+        url: 'https://api.lilsem.nomoredomains.monster',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
+        }
+    });
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -53,7 +62,7 @@ function App() {
         loggedIn &&
         api.getAllData()
             .then(([cardList, userData]) => {
-                setCards(cardList);
+                setCards(cardList.reverse());
                 setCurrentUser(userData);
             })
             .catch(err => console.log(err));
@@ -194,15 +203,30 @@ function App() {
                         loggedIn={loggedIn}/>
                 <Routes>
                     <Route path="/" element={
-                        <ProtectedRoute element={Main}
-                                        loggedIn={loggedIn}
-                                        onEditProfile={handleEditProfileClick}
-                                        onAddPlace={handleAddPlaceClick}
-                                        onEditAvatar={handleEditAvatarClick}
-                                        onCardClick={handleCardClick}
-                                        onCardLike={handleCardLike}
-                                        onCardDelete={handleConfirmationClick}
-                                        cards={cards}/>
+
+                        !loggedIn && localStorage.getItem('token') ? (
+                                <div className="loader">
+                                    <ThreeDots
+                                        height="70"
+                                        width="70"
+                                        radius="9"
+                                        color="#ffffff"
+                                        ariaLabel="three-dots-loading"
+                                        visible={true}
+                                    />
+                                </div>) :
+
+                            (<ProtectedRoute element={Main}
+                                             loggedIn={loggedIn}
+                                             onEditProfile={handleEditProfileClick}
+                                             onAddPlace={handleAddPlaceClick}
+                                             onEditAvatar={handleEditAvatarClick}
+                                             onCardClick={handleCardClick}
+                                             onCardLike={handleCardLike}
+                                             onCardDelete={handleConfirmationClick}
+                                             cards={cards}/>)
+
+
                     }/>
                     <Route path="/sign-in"
                            element={<Login isRenderer={isRenderer} onLogin={handleLogin}/>}

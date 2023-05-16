@@ -91,12 +91,5 @@ class Api {
         }
     }
 }
-const api = new Api({
-    url: 'https://api.lilsem.nomoredomains.monster',
-    headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
-    }
-});
 
-export default api;
+export default Api;
