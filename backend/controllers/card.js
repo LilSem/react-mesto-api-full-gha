@@ -1,6 +1,7 @@
+const { Error } = require('mongoose');
+
 const Card = require('../models/card');
 const { BadRequestError, NotFoundError } = require('../errors/errorsExport');
-const { Error } = require('mongoose');
 
 const validateCard = (res, card) => {
   if (!card) {

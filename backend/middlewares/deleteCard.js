@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
       if (card.owner.toString() !== req.user._id) {
         throw new ForbiddenError();
       }
-      next();
+      return next();
     })
     .catch(next);
 };

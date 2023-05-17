@@ -5,4 +5,3 @@ module.exports = (error, req, res, next) => {
   res.status(statusCode).send({ message });
   next();
 };
-

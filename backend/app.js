@@ -14,30 +14,27 @@ const app = express();
 
 const { PORT = 3000 } = process.env;
 
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 
 app.use(requestLogger);
 app.use(cors);
 
 app.get('/crash-test', (next) => {
-  setTimeout(() => {
-    return next(new Error('Сервер сейчас упадёт'));
-  }, 0);
+  setTimeout(() => next(new Error('Сервер сейчас упадёт')), 0);
 });
 
 app.use(loginRouter);
 app.use(auth);
 app.use(router);
 
-app.use((next) => {
-  return next (new NotFoundError('Маршрут не найден :( '));
-});
+app.use((req, res, next) => next(new NotFoundError('Маршрут не найден')));
 
 app.use(errorLogger);
 app.use(errors());
+
 app.use(errorHandler);
 
 app.listen(PORT);
