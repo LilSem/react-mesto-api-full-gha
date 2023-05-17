@@ -2,10 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 
+const loginRouter = require('./routes/login');
+const router = require('./routes/index');
 const { NotFoundError } = require('./errors/errorsExport');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('./middlewares/cors');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -19,31 +22,22 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 app.use(requestLogger);
 app.use(cors);
 
-app.get('/crash-test', () => {
+app.get('/crash-test', (next) => {
   setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
+    return next(new Error('Сервер сейчас упадёт'));
   }, 0);
 });
 
-app.use(require('./routes/login'));
-
+app.use(loginRouter);
 app.use(auth);
-app.use('/users', require('./routes/user'));
-app.use('/cards', require('./routes/card'));
+app.use(router);
+
+app.use((next) => {
+  return next (new NotFoundError('Маршрут не найден :( '));
+});
 
 app.use(errorLogger);
 app.use(errors());
-
-app.use(() => {
-  throw new NotFoundError('Маршрут не найден :( ');
-});
-
-app.use((error, req, res, next) => {
-  const statusCode = error.statusCode || 500;
-
-  const message = statusCode === 500 ? 'На сервере произошла ошибка' : error.message;
-  res.status(statusCode).send({ message });
-  next();
-});
+app.use(errorHandler);
 
 app.listen(PORT);

@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { Error } = require('mongoose');
 
 const User = require('../models/user');
 
@@ -49,7 +50,7 @@ const createUser = (req, res, next) => {
         });
       })
       .catch((err) => {
-        if (err.name === 'ValidationError') {
+        if (err.name instanceof Error.ValidatorError) {
           return next(new BadRequestError('Некорректные данные при создании пользователя'));
         }
         if (err.code === 11000) {
@@ -66,7 +67,7 @@ const updateUser = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .then((user) => validateUser(res, user))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.name instanceof Error.ValidatorError) {
         return next(new BadRequestError('Некорректные данные при обновлении пользователя'));
       }
       return next(err);
@@ -79,7 +80,7 @@ const updateAvatar = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .then((user) => validateUser(res, user))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err.name instanceof Error.ValidatorError) {
         return next(new BadRequestError('Некорректные данные при обновлении аватара пользователя'));
       }
       return next(err);
